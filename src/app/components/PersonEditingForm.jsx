@@ -67,7 +67,9 @@ const mapDispatchToProps = dispatch => {
             dispatch(submit("personEditingForm"));
         },
         onSubmit: (values) => {
-            dispatch(createNewPerson(values));
+            dispatch(createNewPerson(values, (newPerson) => {
+                dispatch(change("companyEditingForm", "contactPerson", newPerson));
+            }));
         },
         handleClose: () => {
             dispatch(changeEditingPerson(null));
